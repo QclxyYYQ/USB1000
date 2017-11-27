@@ -148,7 +148,7 @@ namespace WindowsFormsApp1
             ChansCount = CountChannel();
             if (ChansCount == 0)
             {
-                MessageBox.Show("请先选择通道");
+                MessageBox.Show("请先选择通道使能");
                 return;
             }
             InitSeries();
