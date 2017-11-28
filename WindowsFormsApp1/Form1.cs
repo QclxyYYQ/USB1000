@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace WindowsFormsApp1
 {
@@ -128,19 +129,20 @@ namespace WindowsFormsApp1
         private void InitSeries()
         {
             chart1.Series.Clear();
-            //chart1.ChartAreas[0].Area3DStyle.Enable3D = true;
+            ////chart1.ChartAreas[0].Area3DStyle.Enable3D = true;
             chart1.ChartAreas[0].Area3DStyle.Enable3D = false;
-
-            for (int i = 0; i < 16; i++)
-            {
-                if (state[i])
-                {
-                    var s = chart1.Series.Add("通道" + (i + 1));
-                    s.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                    s.BorderWidth = 2;
-                }
-
-            }
+            var s = chart1.Series.Add("通道1和2");
+            s.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            s.BorderWidth = 2;
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    //if (state[i])
+            //    {
+            //        var s = chart1.Series.Add("通道" + (i + 1));
+            //        s.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            //        s.BorderWidth = 2;
+            //    }
+            //}
 
         }
         private void button1_Click(object sender, EventArgs e)
@@ -181,8 +183,8 @@ namespace WindowsFormsApp1
                     Debug.WriteLine("开始采集");
                     running = true;
 
-                    recordThread = new Thread(record);
-                    recordThread.Start();
+                    //recordThread = new Thread(record);
+                    //recordThread.Start();
 
                     temp = USB1000.StartRead(0);
 
@@ -214,6 +216,8 @@ namespace WindowsFormsApp1
                 USB1000.CloseDevice(0);                // 关闭设备
             }
         }
+        //DataPointCollection dp;
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (running)
@@ -227,20 +231,26 @@ namespace WindowsFormsApp1
                 else
                 {
 
-                    float[,] f = new float[ChansCount, NumToRead];
-                    for (int k = 0; k < ChansCount; k++)
-                    {
-                        //重新采样，取一部分点进行绘图，如果把所有点都用来绘图会导致刷新速度变慢。
-                        chart1.Series[k].Points.AddY(data[NumToRead * k]);//只读取每个通道的第一个值
-                        //label3.Text = data[NumToRead * k].ToString();
+                    //float[,] f = new float[ChansCount, NumToRead];
+                    float x, y;
+                    x = data[NumToRead * 0];
+                    y = data[NumToRead * 1];
 
-                        //实际上所有数据点都毫无丢失地存储了
-                        for (int i = 0; i < NumToRead; i++)
-                        {
-                            f[k, i] = data[NumToRead * k + i];
-                        }
-                    }
-                    dataQueue.Enqueue(f);
+                    chart1.Series[0].Points.AddXY(x, y);
+
+                    //for (int k = 0; k < ChansCount; k++)
+                    //{
+                    //重新采样，取一部分点进行绘图，如果把所有点都用来绘图会导致刷新速度变慢。
+                    //只读取每个通道的第一个值
+                    //label3.Text = data[NumToRead * k].ToString();
+
+                    //实际上所有数据点都毫无丢失地存储了
+                    //for (int i = 0; i < NumToRead; i++)
+                    //{
+                    //f[k, i] = data[NumToRead * k + i];
+                    //}
+                    //}
+                    //dataQueue.Enqueue(f);
 
                 }
 
