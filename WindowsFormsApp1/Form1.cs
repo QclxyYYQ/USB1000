@@ -164,6 +164,7 @@ namespace WindowsFormsApp1
             }
             try
             {
+                SampleRate = Convert.ToInt32(txRate.Text);
                 temp = USB1000.OpenDevice(0);
                 temp = USB1000.ResetDevice(0);
                 temp = USB1000.SetUSB1AiRange(0, (int)USB1000.AiRange.V5);
