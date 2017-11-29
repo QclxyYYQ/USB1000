@@ -43,7 +43,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txRate = new System.Windows.Forms.TextBox();
@@ -153,16 +152,6 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Queue:";
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(12, 386);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "O(∩_∩)O哈哈~";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // checkedListBox1
             // 
             this.checkedListBox1.FormattingEnabled = true;
@@ -184,7 +173,7 @@
             // 
             this.txRate.Location = new System.Drawing.Point(60, 12);
             this.txRate.Name = "txRate";
-            this.txRate.Size = new System.Drawing.Size(90, 21);
+            this.txRate.Size = new System.Drawing.Size(75, 21);
             this.txRate.TabIndex = 13;
             // 
             // Form1
@@ -195,7 +184,6 @@
             this.Controls.Add(this.txRate);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button3);
@@ -227,7 +215,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txRate;
