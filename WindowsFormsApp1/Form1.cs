@@ -167,7 +167,7 @@ namespace WindowsFormsApp1
                 SampleRate = Convert.ToInt32(txRate.Text);
                 temp = USB1000.OpenDevice(0);
                 temp = USB1000.ResetDevice(0);
-                temp = USB1000.SetUSB1AiRange(0, (int)USB1000.AiRange.V5);
+                temp = USB1000.SetUSB1AiRange(0, (int)USB1000.AiRange.V10);
                 temp = USB1000.SetSampleRate(0, SampleRate);
                 temp = USB1000.SetChanMode(0, (int)USB1000.ChannelMode.NRSE);
 
@@ -275,44 +275,6 @@ namespace WindowsFormsApp1
         {
             stop();
         }
-
-        WebSocket websocket;
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-            websocket = new WebSocket("ws://localhost:10066/websocket");
-            websocket.Opened += Websocket_Opened;
-            websocket.Error += Websocket_Error;
-            websocket.Closed += Websocket_Closed;
-            websocket.MessageReceived += Websocket_MessageReceived;
-            websocket.Open();
-
-        }
-
-        private void Websocket_MessageReceived(object sender, MessageReceivedEventArgs e)
-        {
-            Debug.WriteLine("收到:" + e.Message);
-
-        }
-
-        private void Websocket_Closed(object sender, EventArgs e)
-        {
-            Debug.WriteLine("连接关闭");
-
-        }
-
-        private void Websocket_Opened(object sender, EventArgs e)
-        {
-            Debug.WriteLine("连接成功");
-        }
-
-        private void Websocket_Error(object sender, SuperSocket.ClientEngine.ErrorEventArgs e)
-        {
-            Debug.WriteLine("出错:" + e.Exception.Message);
-
-        }
-
-
+        
     }
 }
